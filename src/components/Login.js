@@ -27,8 +27,15 @@ const Login = () => {
       // Redirect to a protected dashboard or home page
       // window.location.href = '/dashboard';
     } catch (err) {
-      console.error('Login error:', err.response.data);
-      alert('Error logging in: ' + err.response.data.msg);
+      // This is the updated part
+      if (err.response) {
+          console.error('Login error:', err.response.data);
+          alert('Error logging in: ' + err.response.data.msg);
+      } else {
+        console.error('An error occurred:', err.message)
+        alert('An error occurred: + err.message'
+        )
+      }
     }
   };
 

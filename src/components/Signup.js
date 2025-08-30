@@ -26,6 +26,17 @@ const Signup = () => {
       // localStorage.setItem('token', res.data.token);
       // window.location.href = '/dashboard'; // Example redirect
     } catch (err) {
+      if (err.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.error('Registration error:', err.response.data);
+        alert('Error registering user: ' + err.response.data.msg);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        // or a network error occurred
+        console.error('An error occurred:', err.message);
+        alert('An error occurred: ' + err.message);
+      }
       console.error('Registration error:', err.response.data);
       alert('Error registering user: ' + err.response.data.msg);
     }
