@@ -32,9 +32,8 @@ const Login = () => {
           console.error('Login error:', err.response.data);
           alert('Error logging in: ' + err.response.data.msg);
       } else {
-        console.error('An error occurred:', err.message)
-        alert('An error occurred: + err.message'
-        )
+        console.error('An error occurred:', err.message);
+        alert('An error occurred: ' + err.message);
       }
     }
   };
