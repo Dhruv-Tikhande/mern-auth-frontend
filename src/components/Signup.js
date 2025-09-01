@@ -18,7 +18,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       // Use your live Render URL here
-      const res = await axios.post('https://my-auth-api-lgbc.onrender.com/api/auth/register', formData);
+      const res = await axios.post('/api/auth/register', formData);
       //const res = await axios.post('http://localhost:3000/api/auth/register', formData);
       console.log('User registered successfully:', res.data);
       alert('Registration successful! Please login.');

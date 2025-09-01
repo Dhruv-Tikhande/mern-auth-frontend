@@ -16,7 +16,7 @@ const Login = () => {
     e.preventDefault();
     try {
       // Use your live Render URL here
-      const res = await axios.post('https://my-auth-api-lgbc.onrender.com/api/auth/login', formData);
+      const res = await axios.post('/api/auth/login', formData);
       //const res = await axios.post('http://localhost:3000/api/auth/login', formData);
       console.log('Login successful:', res.data);
       
