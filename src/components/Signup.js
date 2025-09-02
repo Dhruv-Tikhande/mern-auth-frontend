@@ -17,72 +17,84 @@ const Signup = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Use your live Render URL here
       const res = await axios.post('/api/auth/register', formData);
-      //const res = await axios.post('http://localhost:3000/api/auth/register', formData);
       console.log('User registered successfully:', res.data);
       alert('Registration successful! Please login.');
-      // You can also store the token and redirect
-      // localStorage.setItem('token', res.data.token);
-      // window.location.href = '/dashboard'; // Example redirect
     } catch (err) {
       if (err.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
         console.error('Registration error:', err.response.data);
         alert('Error registering user: ' + err.response.data.msg);
       } else {
-        // Something happened in setting up the request that triggered an Error
-        // or a network error occurred
         console.error('An error occurred:', err.message);
         alert('An error occurred: ' + err.message);
       }
-      console.error('Registration error:', err.response.data);
-      alert('Error registering user: ' + err.response.data.msg);
     }
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={onChange}
-          placeholder="Name"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={onChange}
-          placeholder="Email"
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={onChange}
-          placeholder="Password"
-          minLength="6"
-          required
-        />
-        <input
-          type="text"
-          name="phone"
-          value={phone}
-          onChange={onChange}
-          placeholder="Phone"
-          required
-        />
-        <button type="submit">Sign Up</button>
-      </form>
+    // Main container for the form, centered on the page
+    <div className="flex items-center justify-center">
+      {/* Card container with background, padding, rounded corners, and shadow */}
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Create Your Account</h2>
+        <form onSubmit={onSubmit}>
+          {/* Each form field is in a div for spacing */}
+          <div className="mb-4">
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={onChange}
+              placeholder="Full Name"
+              required
+              className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div className="mb-4">
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={onChange}
+              placeholder="Email Address"
+              required
+              className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div className="mb-4">
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={onChange}
+              placeholder="Password"
+              minLength="6"
+              required
+              className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div className="mb-6">
+            <input
+              type="text"
+              name="phone"
+              value={phone}
+              onChange={onChange}
+              placeholder="Phone Number"
+              required
+              className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
 
 export default Signup;
+

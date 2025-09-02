@@ -15,22 +15,14 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Use your live Render URL here
       const res = await axios.post('/api/auth/login', formData);
-      //const res = await axios.post('http://localhost:3000/api/auth/login', formData);
       console.log('Login successful:', res.data);
-      
-      // Store the token in local storage
       localStorage.setItem('token', res.data.token);
-      
       alert('Login successful!');
-      // Redirect to a protected dashboard or home page
-      // window.location.href = '/dashboard';
     } catch (err) {
-      // This is the updated part
       if (err.response) {
-          console.error('Login error:', err.response.data);
-          alert('Error logging in: ' + err.response.data.msg);
+        console.error('Login error:', err.response.data);
+        alert('Error logging in: ' + err.response.data.msg);
       } else {
         console.error('An error occurred:', err.message);
         alert('An error occurred: ' + err.message);
@@ -39,28 +31,41 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={onSubmit}>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={onChange}
-          placeholder="Email"
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={onChange}
-          placeholder="Password"
-          minLength="6"
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
+    <div className="flex items-center justify-center">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Welcome Back</h2>
+        <form onSubmit={onSubmit}>
+          <div className="mb-4">
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={onChange}
+              placeholder="Email Address"
+              required
+              className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div className="mb-6">
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={onChange}
+              placeholder="Password"
+              minLength="6"
+              required
+              className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300"
+          >
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
